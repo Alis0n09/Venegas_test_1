@@ -1,14 +1,13 @@
 import { useState, useRef } from "react";
-import { Paper, TextField, Typography, Button, Select } from "@mui/material";
+import { Paper, TextField, Typography, Button, Select, MenuItem } from "@mui/material";
 
 export default function BonoPage() {
   const sueldoDiarioRef = useRef<HTMLInputElement>(null);
-  const diasVacacionesRef = useRef<HTMLInputElement>(null);
+  const [diasVacaciones, setDiasVacaciones] = useState<number>(5);
   const [bono, setBono] = useState(0);
 
   const calcularBono = () => {
     const sueldoDiario = Number(sueldoDiarioRef.current?.value || 0);
-    const diasVacaciones = Number(diasVacacionesRef.current?.value || 0);
     setBono(sueldoDiario * diasVacaciones);
   };
 
@@ -25,10 +24,15 @@ export default function BonoPage() {
         sx={{ mr: 2, mb: 2 }}
       />
 
-      <Select label="Dias" value={diasVacacionesRef}>
-        <option value={5}>5</option>
-        <option value={10}>10</option>
-        <option value={15}>15</option>
+      <Select
+        label="Días"
+        value={diasVacaciones}
+        onChange={(e) => setDiasVacaciones(Number(e.target.value))}
+        sx={{ mr: 2, mb: 2, minWidth: 120 }}
+      >
+        <MenuItem value={5}>5</MenuItem>
+        <MenuItem value={10}>10</MenuItem>
+        <MenuItem value={15}>15</MenuItem>
       </Select>
 
       <Button variant="contained" onClick={calcularBono} sx={{ mb: 2 }}>

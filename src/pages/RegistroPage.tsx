@@ -12,9 +12,9 @@ export default function RegistroPage() {
       <TextField label="Developer"></TextField>
 
       <Typography sx={{ mt: 2 }}>
-        ¡Formulario de registro de usuarios próximamente!
+        ¡Formulario de registro completo
       </Typography>
-º
+
     </Paper>
   );
 }
